@@ -8,6 +8,8 @@ const app = express();
 
 app.set('pkg', pkg);
 
+app.use(express.json());
+
 // MIDDLEWARE
 app.use(morgan('dev'));
 
