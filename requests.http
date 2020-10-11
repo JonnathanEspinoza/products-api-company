@@ -1,0 +1,29 @@
+@productos = http://localhost:3000/api/products
+@auth = http://localhost:3000/api/auth
+
+### get productos
+GET {{productos}}/
+
+### get productos por id
+GET {{productos}}/5f7d180b872612355843d1be
+
+### crear nuevo producto
+POST {{productos}}/
+Content-Type: application/json
+x-access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmN2U3N2U4ZmI3OGVjMjY3YzgxZTZkMSIsImlhdCI6MTYwMjE0NDE5MCwiZXhwIjoxNjAyMjMwNTkwfQ.X-9-Pg6z0InVGh2mhN2HaghOQV0LHZY5crQwcR8SK-A
+
+{
+    "name": "laptop jede",
+    "price": 1000,
+    "category": "laptop1234",
+    "imgURL": "https://esports.as.com/2020/09/01/samira/Ilustracion-basica-Samira_1387971216_487600_1440x600.jpg"
+}
+
+### signin
+POST {{auth}}/signin
+Content-Type: application/json
+
+{
+    "email": "damian@ibm.com",
+    "password": "12345"
+}
