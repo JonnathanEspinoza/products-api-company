@@ -1,6 +1,6 @@
-import { verifyToken } from "./authJwt";
+import * as authJwt from "./authJwt";
 //import {  } from "./verifySignup";
 
 export {
-    verifyToken
+    authJwt
 }
