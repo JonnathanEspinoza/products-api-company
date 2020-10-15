@@ -5,5 +5,6 @@ import * as userCtrl from "../controllers/user.controller";
 import { authJwt, verifySignup } from "../middlewares";
 
 router.post('/', [authJwt.verifyToken, authJwt.isAdmin, verifySignup.checkRolesExisted], userCtrl.createUser);
+router.get('/', userCtrl.getUsers);
 
 export default router;
