@@ -8,16 +8,18 @@ import productsRoutes from './routes/products.routes';
 import authRoutes from "./routes/auth.routes";
 import usersRoutes from "./routes/user.routes";
 
+// use methods libs
 const app = express();
-createRoles();
+createRoles(); // creo los roles automaticamente
 
+// Settings
 app.set('pkg', pkg);
 
+// Middlewares
+app.use(morgan('dev'));
 app.use(express.json());
 
-// MIDDLEWARE
-app.use(morgan('dev'));
-
+// Routes
 app.get('/', (req, res) => {
     res.json({
         name: app.get('pkg').name,

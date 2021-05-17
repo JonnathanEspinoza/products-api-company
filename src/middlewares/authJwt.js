@@ -4,18 +4,18 @@ import config from "../config";
 import User from "../models/User";
 import Role from "../models/Role";
 
+// verifica el token
 export const verifyToken = async (req, res, next) => {
     try {
-        // recibimos token
+        // extraemos token de la cabecera http
         const token = req.headers["x-access-token"];
-
         if (!token) return res.status(403).json({ message: "No token provide" });
 
-        // extraemos lo que está dentro del token
+        // verificamos el token y extraemos el id del user
         const decoded = jwt.verify(token, config.SECRET);
         req.userId = decoded.id;
 
-        // Buscamos el usuario
+        // comprobamos si existe el usuario con el id de user extraido del token
         const user = await User.findById(req.userId, { password: 0 });
         if (!user) return res.status(404).json({ message: "no user found" });
 
@@ -26,6 +26,7 @@ export const verifyToken = async (req, res, next) => {
     }
 };
 
+// verifica el rol si es moderator
 export const isModerator = async (req, res, next) => {
     const user = await User.findById(req.userId);
     const roles = await Role.find({ _id: { $in: user.roles } });
@@ -40,6 +41,7 @@ export const isModerator = async (req, res, next) => {
     return res.status(403).json({ message: "Requiere Moderator role" });
 };
 
+// verifica el rol si es admin
 export const isAdmin = async (req, res, next) => {
     const user = await User.findById(req.userId);
     const roles = await Role.find({ _id: { $in: user.roles } });

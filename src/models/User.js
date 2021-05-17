@@ -25,11 +25,14 @@ const userSchema = new Schema({
     versionKey: false
 });
 
+// encriptacion de contraseña
 userSchema.statics.encryptPassword = async (password) => {
     const salt = await bcrypt.genSalt(10);
     return await bcrypt.hash(password, salt);
 }
 
+// compara dos contraseñas
+// return true or false
 userSchema.statics.comparePassword = async (password, recivedPassword) => {
     return await bcrypt.compare(password, recivedPassword);
 }

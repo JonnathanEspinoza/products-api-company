@@ -1,6 +1,9 @@
 import app from './app'
+
+// database
 import './database'
 
-app.listen(3000);
-
-console.log('sever listen on port ', 3000);
+// starting the server
+app.listen(3000, () => {
+    console.log('sever listen on port ', 3000);
+});

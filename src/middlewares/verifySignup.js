@@ -11,6 +11,7 @@ export const checkDuplicateUsernameOrEmail = async (req, res, next) => {
     next();
 }
 
+// verifica si los roles enviados existen en la base de datos
 export const checkRolesExisted = (req, res, next) => {
     
     if (req.body.roles) {
